@@ -9,12 +9,33 @@ module ActiveMerchant #:nodoc:
       module Allpay
         class Helper < ActiveMerchant::Billing::Integrations::Helper
 
-          mapping :merchant_id, 'MerchantID'
-          mapping :merchant_trade_no, 'MerchantTradeNo'
+          # 廠商編號
+          mapping :account, 'MerchantID'
+          # 廠商交易編號
+          mapping :order, 'MerchantTradeNo'
+          # 交易金額
+          mapping :amount, 'TotalAmount'
+          # 付款完成通知回傳網址
+          mapping :notify_url, 'ReturnURL'
+          # Client 端返回廠商網址
+          mapping :return_url, 'ClientBackURL'
+          # 交易描述
+          mapping :description, 'TradeDesc'
+
+          ### Custom Fields
+          # 交易類型
           mapping :payment_type, 'PaymentType'
-          mapping :total_amount, 'TotalAmount'
-          mapping :return_url, 'ReturnURL'
-          mapping :client_back_url, 'ClientBackURL'
+
+          # 選擇預設付款方式
+          #   Credit:信用卡
+          #   WebATM:網路 ATM
+          #   ATM:自動櫃員機
+          #   CVS:超商代碼
+          #   BARCODE:超商條碼
+          #   Alipay:支付寶
+          #   Tenpay:財付通
+          #   TopUpUsed:儲值消費
+          #   ALL:不指定付款方式, 由歐付寶顯示付款方式 選擇頁面
           mapping :choose_payment, 'ChoosePayment'
 
           def initialize(order, account, options = {})
