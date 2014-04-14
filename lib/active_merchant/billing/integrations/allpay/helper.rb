@@ -38,42 +38,18 @@ module ActiveMerchant #:nodoc:
           #   ALL:不指定付款方式, 由歐付寶顯示付款方式 選擇頁面
           mapping :choose_payment, 'ChoosePayment'
 
+          # 商品名稱
+          # 多筆請以井號分隔 (#)
+          mapping :item_name, 'ItemName'
+
           def initialize(order, account, options = {})
             super
             add_field 'MerchantID', ActiveMerchant::Billing::Integrations::Allpay.merchant_id
             add_field 'PaymentType', ActiveMerchant::Billing::Integrations::Allpay::PAYMENT_TYPE
           end
 
-          def merchant_trade_no(trade_number)
-            add_field 'MerchantTradeNo', trade_number
-          end
-
           def merchant_trade_date(date)
             add_field 'MerchantTradeDate', date.strftime('%Y/%m/%d %H:%M:%S')
-          end
-
-          def total_amount(amount)
-            add_field 'TotalAmount', amount
-          end
-
-          def trade_desc(description)
-            add_field 'TradeDesc', description
-          end
-
-          def item_name(item)
-            add_field 'ItemName', item
-          end
-
-          def choose_payment(payment)
-            add_field 'ChoosePayment', payment
-          end
-
-          def return_url(url)
-            add_field 'ReturnURL', url
-          end
-
-          def client_back_url(url)
-            add_field 'ClientBackURL', url
           end
 
           def encrypted_data
