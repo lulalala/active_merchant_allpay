@@ -23,9 +23,9 @@ module ActiveMerchant #:nodoc:
 
           def complete?
             case @params['RtnCode']
-            when 1 #付款成功
+            when '1' #付款成功
               true
-            when 800 #貨到付款訂單建立成功
+            when '800' #貨到付款訂單建立成功
               true
             else
               false

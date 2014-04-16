@@ -20,6 +20,10 @@ class AllpayNotificationTest < Test::Unit::TestCase
     assert @allpay.respond_to?(:acknowledge)
   end
 
+  def test_complete?
+    assert @allpay.complete?
+  end
+
   private
 
   def http_raw_data
