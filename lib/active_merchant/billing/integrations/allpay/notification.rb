@@ -14,6 +14,10 @@ module ActiveMerchant #:nodoc:
             end
           end
 
+          def transaction_id
+            @params['TradeNo']
+          end
+
           def checksum_ok?
             checksum = @params.delete('CheckMacValue')
 
