@@ -16,6 +16,10 @@ class AllpayNotificationTest < Test::Unit::TestCase
     assert_equal '2014/04/15 15:39:38', p['PaymentDate']
   end
 
+  def test_respond_to_acknowledge
+    assert @allpay.respond_to?(:acknowledge)
+  end
+
   private
 
   def http_raw_data
